@@ -2,6 +2,8 @@ import logoDark from "./logo-dark.svg";
 import logoLight from "./logo-light.svg";
 
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import { 
   BookOpen, 
   Code, 
@@ -225,6 +227,8 @@ export function Welcome() {
               <button onClick={() => scrollToSection('services')} className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Services</button>
               <button onClick={() => scrollToSection('features')} className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Why Us</button>
               <button onClick={() => scrollToSection('reviews')} className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Reviews</button>
+              <button onClick={() => scrollToSection('faqs')} className="text-gray-600 hover:text-blue-600 font-medium transition-colors">FAQs</button>
+              <Link to="/privacy-policy" className="text-gray-600 hover:text-blue-600 font-medium transition-colors">Privacy</Link>
               <a 
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -252,6 +256,8 @@ export function Welcome() {
               <button onClick={() => scrollToSection('services')} className="block w-full text-left px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">Services</button>
               <button onClick={() => scrollToSection('features')} className="block w-full text-left px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">Why Us</button>
               <button onClick={() => scrollToSection('reviews')} className="block w-full text-left px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">Reviews</button>
+              <button onClick={() => scrollToSection('faqs')} className="block w-full text-left px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">FAQs</button>
+              <Link to="/privacy-policy" className="block w-full text-left px-3 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md">Privacy Policy</Link>
               <a 
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -462,38 +468,72 @@ export function Welcome() {
 
       {}
       {/* Countries We Assist - Animated Marquee */}
-      <section className="py-14 bg-blue-600 overflow-hidden relative">
+      <section className="py-16 bg-white overflow-hidden relative">
         {/* Decorative Background for Countries */}
-        <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, #000 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mb-12">
           <div className="text-center">
-            {/* <Globe2 className="h-12 w-12 text-blue-200 mx-auto mb-4" /> */}
-            <img src="/logo.png" alt="Global Assignment Solutions logo" className="h-32 w-32 mx-auto mb-4 object-contain" />
-            <h2 className="text-3xl font-bold text-white mb-2">Global Academic Reach</h2>
-            <p className="text-blue-100 max-w-2xl mx-auto">Providing expert assistance to students studying in universities across the globe.</p>
+            <div className="inline-flex items-center justify-center mb-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-full blur opacity-20"></div>
+                <img src="/logo.png" alt="Global Assignment Solutions logo" className="h-24 w-24 object-contain relative" />
+              </div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+              Global <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Academic Reach</span>
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Providing expert assistance to students studying in universities across the globe. Serving 150+ countries worldwide.
+            </p>
           </div>
         </div>
 
         {/* Scrolling Container */}
-        <div className="relative w-full flex overflow-hidden">
+        <div className="relative w-full py-8">
           {/* Gradient Masks for smooth fading edges */}
-          <div className="absolute top-0 left-0 w-16 md:w-32 h-full bg-gradient-to-r from-blue-600 to-transparent z-20 pointer-events-none"></div>
-          <div className="absolute top-0 right-0 w-16 md:w-32 h-full bg-gradient-to-l from-blue-600 to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 w-20 md:w-40 h-full bg-gradient-to-r from-white via-transparent to-transparent z-20 pointer-events-none"></div>
+          <div className="absolute top-0 right-0 w-20 md:w-40 h-full bg-gradient-to-l from-white via-transparent to-transparent z-20 pointer-events-none"></div>
 
           {/* Marquee Track (Doubled for infinite loop effect) */}
-          <div className="flex animate-scroll">
+          <div className="flex animate-scroll gap-6">
             {[...countries, ...countries].map((country, index) => (
               <div 
                 key={index} 
-                className="w-[200px] flex-shrink-0 mx-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 flex flex-col items-center justify-center group hover:bg-white transition-all duration-300 cursor-default"
+                className="w-[200px] flex-shrink-0 relative group"
               >
-                <span className="text-5xl mb-3 group-hover:scale-110 transition-transform duration-300 drop-shadow-md" role="img" aria-label={`${country.name} flag`}>
-                  {country.flag}
-                </span>
-                <span className="text-white font-semibold text-lg group-hover:text-blue-700 transition-colors">{country.name}</span>
+                {/* Card Glow Effect */}
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-indigo-400 rounded-2xl blur opacity-0 group-hover:opacity-75 transition duration-500"></div>
+                
+                {/* Card */}
+                <div className="relative bg-gradient-to-br from-slate-50 to-gray-50 border border-gray-200 rounded-2xl p-6 flex flex-col items-center justify-center h-40 group-hover:border-blue-400 transition-all duration-300 cursor-default shadow-sm hover:shadow-lg">
+                  <span className="text-6xl mb-2 inline-block group-hover:scale-125 transition-transform duration-300">
+                    {country.flag}
+                  </span>
+                  <p className="text-gray-800 font-semibold text-base text-center group-hover:text-blue-600 transition-colors duration-300">
+                    {country.name}
+                  </p>
+                </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        {/* Stats Section */}
+        <div className="mt-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200 hover:shadow-lg transition-shadow">
+              <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">150+</p>
+              <p className="text-gray-700 font-medium mt-2">Countries Served</p>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200 hover:shadow-lg transition-shadow">
+              <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600">10K+</p>
+              <p className="text-gray-700 font-medium mt-2">Happy Students</p>
+            </div>
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-teal-50 border border-green-200 hover:shadow-lg transition-shadow">
+              <p className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-600">24/7</p>
+              <p className="text-gray-700 font-medium mt-2">Support Available</p>
+            </div>
           </div>
         </div>
       </section>
@@ -613,6 +653,116 @@ export function Welcome() {
       </section>
 
       {}
+      {/* FAQs Section */}
+      <section id="faqs" className="py-24 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="inline-block py-1.5 px-4 rounded-full bg-blue-100 text-blue-700 font-bold tracking-wider uppercase text-xs mb-4 shadow-sm border border-blue-200">
+              Common Questions
+            </span>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+              Frequently Asked <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Questions</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto font-medium">
+              Get answers to the most common questions about our services.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {/* FAQ 1 */}
+            <details className="group border-l-4 border-blue-600 bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <summary className="flex cursor-pointer items-center justify-between font-bold text-gray-900 text-lg">
+                <span>Is my information confidential?</span>
+                <span className="transition-transform group-open:rotate-180">
+                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Absolutely! We treat client confidentiality with the highest priority. All your personal information, assignment details, and communication are kept strictly confidential. We never share your data with third parties and comply with all data protection regulations.
+              </p>
+            </details>
+
+            {/* FAQ 2 */}
+            <details className="group border-l-4 border-blue-600 bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <summary className="flex cursor-pointer items-center justify-between font-bold text-gray-900 text-lg">
+                <span>Do you provide plagiarism reports?</span>
+                <span className="transition-transform group-open:rotate-180">
+                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Yes! All our assignments are 100% original and written from scratch. We provide free plagiarism reports (Turnitin or Copyscape) upon request with every completed assignment. This ensures complete peace of mind that your work is authentic.
+              </p>
+            </details>
+
+            {/* FAQ 3 */}
+            <details className="group border-l-4 border-blue-600 bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <summary className="flex cursor-pointer items-center justify-between font-bold text-gray-900 text-lg">
+                <span>How do I place an order?</span>
+                <span className="transition-transform group-open:rotate-180">
+                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                It's easy! Simply message us on WhatsApp with your assignment details including the subject, topic, requirements, and deadline. Our team will review your requirements and provide a free quote within minutes. Once you confirm, we'll get started on your assignment immediately.
+              </p>
+            </details>
+
+            {/* FAQ 4 */}
+            <details className="group border-l-4 border-blue-600 bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <summary className="flex cursor-pointer items-center justify-between font-bold text-gray-900 text-lg">
+                <span>Do you offer revisions?</span>
+                <span className="transition-transform group-open:rotate-180">
+                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                Absolutely! We offer unlimited revisions until you're completely satisfied with the work. If you need any changes or modifications to your assignment, our writers are happy to make them at no additional cost. We ensure your complete satisfaction with the final deliverable.
+              </p>
+            </details>
+
+            {/* FAQ 5 */}
+            <details className="group border-l-4 border-blue-600 bg-gray-50 rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow">
+              <summary className="flex cursor-pointer items-center justify-between font-bold text-gray-900 text-lg">
+                <span>What payment methods do you accept?</span>
+                <span className="transition-transform group-open:rotate-180">
+                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </span>
+              </summary>
+              <p className="text-gray-600 mt-4 leading-relaxed">
+                We accept multiple secure payment methods for your convenience including credit cards (Visa, Mastercard, American Express), debit cards, bank transfers, and digital wallets. All payments are processed securely with end-to-end encryption to protect your financial information.
+              </p>
+            </details>
+          </div>
+
+          {/* CTA after FAQs */}
+          <div className="mt-16 text-center bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 border border-blue-200">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">Still have questions?</h3>
+            <p className="text-gray-600 mb-6 text-lg">Our support team is available 24/7 to assist you</p>
+            <a 
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              <MessageCircle className="h-6 w-6 mr-2" />
+              Chat with Us on WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {}
       {/* Footer */}
       <footer className="bg-gray-900 text-white pt-16 pb-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -636,8 +786,9 @@ export function Welcome() {
                 <li><button onClick={() => scrollToSection('services')} className="hover:text-white transition-colors">Our Services</button></li>
                 <li><button onClick={() => scrollToSection('features')} className="hover:text-white transition-colors">Why Choose Us</button></li>
                 <li><button onClick={() => scrollToSection('reviews')} className="hover:text-white transition-colors">Reviews</button></li>
-                {/* <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li> */}
-                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
+                <li><button onClick={() => scrollToSection('faqs')} className="hover:text-white transition-colors">FAQs</button></li>
+                <li><Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                {/* <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li> */}
               </ul>
             </div>
             
@@ -648,7 +799,7 @@ export function Welcome() {
                 
                 <div className="flex flex-wrap gap-2 pt-2">
                     <a
-                    href="mailto:help@globalassignmentsolutions.com"
+                    href="mailto:globalassignmentsolutions1@gmail.com"
                     className="inline-flex items-center bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg transition-colors">
                     <FaEnvelope className="h-5 w-5 mr-2" />
                     Email Us
@@ -728,45 +879,3 @@ export function Welcome() {
     </div>
   );
 }
-
-// const resources = [
-//   {
-//     href: "https://reactrouter.com/docs",
-//     text: "React Router Docs",
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         width="24"
-//         height="20"
-//         viewBox="0 0 20 20"
-//         fill="none"
-//         className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
-//       >
-//         <path
-//           d="M9.99981 10.0751V9.99992M17.4688 17.4688C15.889 19.0485 11.2645 16.9853 7.13958 12.8604C3.01467 8.73546 0.951405 4.11091 2.53116 2.53116C4.11091 0.951405 8.73546 3.01467 12.8604 7.13958C16.9853 11.2645 19.0485 15.889 17.4688 17.4688ZM2.53132 17.4688C0.951566 15.8891 3.01483 11.2645 7.13974 7.13963C11.2647 3.01471 15.8892 0.951453 17.469 2.53121C19.0487 4.11096 16.9854 8.73551 12.8605 12.8604C8.73562 16.9853 4.11107 19.0486 2.53132 17.4688Z"
-//           strokeWidth="1.5"
-//           strokeLinecap="round"
-//         />
-//       </svg>
-//     ),
-//   },
-//   {
-//     href: "https://rmx.as/discord",
-//     text: "Join Discord",
-//     icon: (
-//       <svg
-//         xmlns="http://www.w3.org/2000/svg"
-//         width="24"
-//         height="20"
-//         viewBox="0 0 24 20"
-//         fill="none"
-//         className="stroke-gray-600 group-hover:stroke-current dark:stroke-gray-300"
-//       >
-//         <path
-//           d="M15.0686 1.25995L14.5477 1.17423L14.2913 1.63578C14.1754 1.84439 14.0545 2.08275 13.9422 2.31963C12.6461 2.16488 11.3406 2.16505 10.0445 2.32014C9.92822 2.08178 9.80478 1.84975 9.67412 1.62413L9.41449 1.17584L8.90333 1.25995C7.33547 1.51794 5.80717 1.99419 4.37748 2.66939L4.19 2.75793L4.07461 2.93019C1.23864 7.16437 0.46302 11.3053 0.838165 15.3924L0.868838 15.7266L1.13844 15.9264C2.81818 17.1714 4.68053 18.1233 6.68582 18.719L7.18892 18.8684L7.50166 18.4469C7.96179 17.8268 8.36504 17.1824 8.709 16.4944L8.71099 16.4904C10.8645 17.0471 13.128 17.0485 15.2821 16.4947C15.6261 17.1826 16.0293 17.8269 16.4892 18.4469L16.805 18.8725L17.3116 18.717C19.3056 18.105 21.1876 17.1751 22.8559 15.9238L23.1224 15.724L23.1528 15.3923C23.5873 10.6524 22.3579 6.53306 19.8947 2.90714L19.7759 2.73227L19.5833 2.64518C18.1437 1.99439 16.6386 1.51826 15.0686 1.25995ZM16.6074 10.7755L16.6074 10.7756C16.5934 11.6409 16.0212 12.1444 15.4783 12.1444C14.9297 12.1444 14.3493 11.6173 14.3493 10.7877C14.3493 9.94885 14.9378 9.41192 15.4783 9.41192C16.0471 9.41192 16.6209 9.93851 16.6074 10.7755ZM8.49373 12.1444C7.94513 12.1444 7.36471 11.6173 7.36471 10.7877C7.36471 9.94885 7.95323 9.41192 8.49373 9.41192C9.06038 9.41192 9.63892 9.93712 9.6417 10.7815C9.62517 11.6239 9.05462 12.1444 8.49373 12.1444Z"
-//           strokeWidth="1.5"
-//         />
-//       </svg>
-//     ),
-//   },
-// ];
